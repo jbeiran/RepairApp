@@ -24,7 +24,6 @@ public class Service {
         this.works = new ArrayList<>();
 
         device.addService(this);
-        manager.addManagedService(this);
     }
 
     public void pay(Payment payment) {

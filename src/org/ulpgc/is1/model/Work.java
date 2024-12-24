@@ -9,7 +9,6 @@ public class Work {
         this.timeSpent = timeSpent;
         this.description = description;
         this.technician = technician;
-        technician.addWork(this);
     }
 
     public int getTimeSpent() {
