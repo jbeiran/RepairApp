@@ -55,8 +55,7 @@ public class ServiceManager {
 
     public void service(ServiceType type, String description, Device device,
             Employee manager, Budget budget) {
-        Service newService = new Service(type, description, device, manager, budget);
-        device.addService(newService);
+        new Service(type, description, device, manager, budget);
     }
 
     public void payService(Service service, Payment payment) {
