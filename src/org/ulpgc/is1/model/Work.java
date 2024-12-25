@@ -3,12 +3,10 @@ package org.ulpgc.is1.model;
 public class Work {
     private final int timeSpent;
     private final String description;
-    private final Employee technician;
 
-    public Work(int timeSpent, String description, Employee technician) {
+    public Work(int timeSpent, String description) {
         this.timeSpent = timeSpent;
         this.description = description;
-        this.technician = technician;
     }
 
     public int getTimeSpent() {
@@ -17,9 +15,5 @@ public class Work {
 
     public String getDescription() {
         return description;
-    }
-
-    public Employee getTechnician() {
-        return technician;
     }
 }

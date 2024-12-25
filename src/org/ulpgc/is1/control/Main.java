@@ -6,7 +6,6 @@ import java.time.LocalDate;
 public class Main {
     public static void main(String[] args) {
         ServiceManager manager = new ServiceManager();
-
         Customer customer1 = new Customer("Antonio", "Garcia González", new Phone("928112233"));
         Customer customer2 = new Customer("María", "Pérez López", new Phone("928445566"));
         manager.addCustomer(customer1);
@@ -33,8 +32,8 @@ public class Main {
         manager.service(ServiceType.Repair, "Arreglo del portatil", device2, employee2, budget);
 
         Service service = device2.getServices().get(0);
-        Work work1 = new Work(2, "Desmontaje", employee1);
-        Work work2 = new Work(5, "Repación y montaje", employee2);
+        Work work1 = new Work(2, "Desmontaje");
+        Work work2 = new Work(5, "Repación y montaje");
         service.addWork(work1);
         service.addWork(work2);
 
@@ -74,10 +73,8 @@ public class Main {
             System.out.println("----------------------------------------");
 
             for (Work w : s.getWorks()) {
-                System.out.println("Tarea { técnico =" + w.getTechnician().getName() + " " +
-                        w.getTechnician().getSurname() + ", concepto='" +
-                        w.getDescription() + "', tiempo invertido =" +
-                        w.getTimeSpent() + " }");
+                System.out.println("Tarea { concepto='" + w.getDescription() + 
+                        "', tiempo invertido=" + w.getTimeSpent() + " }");
             }
         }
     }
