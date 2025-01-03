@@ -6,14 +6,15 @@ import java.time.LocalDate;
 public class Main {
     public static void main(String[] args) {
         ServiceManager manager = new ServiceManager();
-        Customer customer1 = new Customer("Antonio", "Garcia González", new Phone("928112233"));
-        Customer customer2 = new Customer("María", "Pérez López", new Phone("928445566"));
+
+        Customer customer1 = new Customer("Carlos", "Martínez Ruiz", new Phone("928123456"));
+        Customer customer2 = new Customer("Laura", "Sánchez Díaz", new Phone("928789012"));
         manager.addCustomer(customer1);
         manager.addCustomer(customer2);
 
-        Device device1 = new Device("1234-5678", DeviceType.Tablet);
-        Device device2 = new Device("8765-4321", DeviceType.Laptop);
-        Device device3 = new Device("9999-8888", DeviceType.Smartphone);
+        Device device1 = new Device("ABC-12345", DeviceType.Smartphone);
+        Device device2 = new Device("XYZ-98765", DeviceType.Desktop);
+        Device device3 = new Device("DEF-45678", DeviceType.Laptop);
 
         manager.addDevice(device1);
         manager.addDevice(device2);
@@ -23,21 +24,21 @@ public class Main {
         customer1.addDevice(device2);
         customer2.addDevice(device3);
 
-        Employee employee1 = new Employee("Antonio", "Garcia González");
-        Employee employee2 = new Employee("José", "Rodriguez Pérez");
+        Employee employee1 = new Employee("Miguel", "Torres López");
+        Employee employee2 = new Employee("Ana", "Ramírez Castro");
         manager.addTechnician(employee1);
         manager.addTechnician(employee2);
 
-        Budget budget = new Budget(LocalDate.of(2024, 12, 22), 100);
-        manager.service(ServiceType.Repair, "Arreglo del portatil", device2, employee2, budget);
+        Budget budget = new Budget(LocalDate.of(2024, 3, 15), 150);
+        manager.service(ServiceType.Maintenance, "Mantenimiento preventivo del equipo", device2, employee1, budget);
 
         Service service = device2.getServices().get(0);
-        Work work1 = new Work(2, "Desmontaje");
-        Work work2 = new Work(5, "Repación y montaje");
+        Work work1 = new Work(3, "Limpieza y diagnóstico", employee1);
+        Work work2 = new Work(4, "Actualización de componentes", employee2);
         service.addWork(work1);
         service.addWork(work2);
 
-        Payment payment = new Payment(LocalDate.of(2024, 12, 22), 100);
+        Payment payment = new Payment(LocalDate.of(2024, 3, 15), 150);
         manager.payService(service, payment);
 
         System.out.println("********************************************************");
@@ -73,7 +74,9 @@ public class Main {
             System.out.println("----------------------------------------");
 
             for (Work w : s.getWorks()) {
-                System.out.println("Tarea { concepto='" + w.getDescription() + 
+                System.out.println("Tarea { técnico=" + w.getTechnician().getName() +
+                        " " + w.getTechnician().getSurname() +
+                        ", concepto='" + w.getDescription() +
                         "', tiempo invertido=" + w.getTimeSpent() + " }");
             }
         }
