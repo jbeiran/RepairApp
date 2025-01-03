@@ -41,44 +41,46 @@ public class Main {
         Payment payment = new Payment(LocalDate.of(2024, 3, 15), 150);
         manager.payService(service, payment);
 
-        System.out.println("********************************************************");
-        System.out.println("Cliente " + customer1.getName() + " " + customer1.getSurname() +
-                " (tlf.: " + customer1.getPhone() + ")");
-        System.out.println("********************************************************\n");
+        System.out.println("\n═══════════════════════════════════════════════════════");
+        System.out.println("║ Cliente: " + customer1.getName() + " " + customer1.getSurname());
+        System.out.println("║ Teléfono: " + customer1.getPhone());
+        System.out.println("═══════════════════════════════════════════════════════\n");
 
         for (Service s : manager.getDeviceServiceList(device2)) {
-            System.out.println("----------------------------------------");
-            System.out.println("Servicio (ref. " + s.getId() + ")");
-            System.out.println("----------------------------------------");
+            System.out.println("┌──────────────────────────────────────────────────");
+            System.out.println("│ SERVICIO #" + s.getId());
+            System.out.println("├──────────────────────────────────────────────────");
+            System.out.println("│ INFORMACIÓN DEL SERVICIO");
+            System.out.println("│ - Referencia: " + s.getId());
+            System.out.println("│ - Descripción: " + s.getDescription());
+            System.out.println("│ - Tipo: " + s.getType());
+            System.out.println("│ - Pago: " + s.getPayment().getAmount() + " (" +
+                    s.getPayment().getDate() + ")");
 
-            System.out.println("*) Datos del servicio:");
-            System.out.println("|- Ref.: " + s.getId());
-            System.out.println("|- Descripción: " + s.getDescription());
-            System.out.println("|- Tipo: " + s.getType());
-            System.out.println("|- Información del pago: Pago { fecha del pago= " +
-                    s.getPayment().getDate() + ", cantidad= " +
-                    s.getPayment().getAmount() + " euros }");
+            System.out.println("│");
+            System.out.println("│ INFORMACIÓN DEL DISPOSITIVO");
+            System.out.println("│ - S/N: " + s.getDevice().getSerialNumber());
+            System.out.println("│ - Tipo: " + s.getDevice().getType());
 
-            System.out.println("\n*) Datos del dispositivo:");
-            System.out.println("|- Serial Number: " + s.getDevice().getSerialNumber());
-            System.out.println("|- Tipo: " + s.getDevice().getType());
-
-            System.out.println("\n*) Datos del presupuesto:");
-            System.out.println("|- Gestionado por: " + s.getManager().getName() + " " +
+            System.out.println("│");
+            System.out.println("│ INFORMACIÓN DEL PRESUPUESTO");
+            System.out.println("│ - Técnico: " + s.getManager().getName() + " " +
                     s.getManager().getSurname());
-            System.out.println("|- Fecha: " + s.getBudget().getDate());
-            System.out.println("|- Total: " + s.getBudget().getAmount());
+            System.out.println("│ - Fecha: " + s.getBudget().getDate());
+            System.out.println("│ - Importe: " + s.getBudget().getAmount());
 
-            System.out.println("\n----------------------------------------");
-            System.out.println("Tareas realizadas en el servicio");
-            System.out.println("----------------------------------------");
-
+            System.out.println("│");
+            System.out.println("│ TAREAS REALIZADAS");
             for (Work w : s.getWorks()) {
-                System.out.println("Tarea { técnico=" + w.getTechnician().getName() +
-                        " " + w.getTechnician().getSurname() +
-                        ", concepto='" + w.getDescription() +
-                        "', tiempo invertido=" + w.getTimeSpent() + " }");
+                System.out.println("│ * " + w.getDescription());
+                System.out.println("│   Técnico: " + w.getTechnician().getName() +
+                        " " + w.getTechnician().getSurname());
+                System.out.println("│   Tiempo: " + w.getTimeSpent() + " horas");
+                if (s.getWorks().indexOf(w) != s.getWorks().size() - 1) {
+                    System.out.println("│");
+                }
             }
+            System.out.println("└──────────────────────────────────────────────────\n");
         }
     }
 }
