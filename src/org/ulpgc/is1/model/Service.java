@@ -33,6 +33,9 @@ public class Service {
     }
 
     public void addWork(Work work) {
+        if (work == null) {
+            throw new IllegalArgumentException("El trabajo no puede ser nulo");
+        }
         if (!works.contains(work)) {
             works.add(work);
         }
