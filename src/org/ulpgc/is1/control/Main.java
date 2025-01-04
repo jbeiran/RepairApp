@@ -37,9 +37,9 @@ public class Main {
         Employee employee = manager.getTechnician(1);
 
         // Crear y asignar servicio
-        Budget budget = new Budget(LocalDate.of(2024, 3, 15), 150);
+        Budget budget = new Budget(LocalDate.of(2024, 3, 15), 150, employee);
         manager.service(ServiceType.Maintenance, "Mantenimiento preventivo del equipo",
-                device, employee, budget);
+                device, budget);
 
         // Obtener servicio y agregar trabajos
         Service service = device.getServices().get(0);

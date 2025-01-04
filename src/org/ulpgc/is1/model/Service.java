@@ -9,17 +9,15 @@ public class Service {
     private final ServiceType type;
     private final String description;
     private final Device device;
-    private final Employee manager;
     private Payment payment;
     private final Budget budget;
     private final List<Work> works;
 
-    public Service(ServiceType type, String description, Device device, Employee manager, Budget budget) {
+    public Service(ServiceType type, String description, Device device, Budget budget) {
         this.id = NEXT_ID++;
         this.type = type;
         this.description = description;
         this.device = device;
-        this.manager = manager;
         this.budget = budget;
         this.works = new ArrayList<>();
 
@@ -58,7 +56,7 @@ public class Service {
     }
 
     public Employee getManager() {
-        return manager;
+        return budget.getManager();
     }
 
     public Payment getPayment() {
