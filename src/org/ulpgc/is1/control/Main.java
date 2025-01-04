@@ -32,26 +32,17 @@ public class Main {
     }
 
     public static void createService(ServiceManager manager) {
-        // Obtener dispositivo y empleado
-        Device device = manager.getDevice("XYZ-98765");
-        Employee employee = manager.getTechnician(1);
-
         // Crear y asignar servicio
-        Budget budget = new Budget(LocalDate.of(2024, 3, 15), 150, employee);
         manager.service(ServiceType.Maintenance, "Mantenimiento preventivo del equipo",
-                device, budget);
+                manager.getDevice("XYZ-98765"), new Budget(LocalDate.of(2024, 3, 15), 150, manager.getTechnician(1)));
 
         // Obtener servicio y agregar trabajos
-        Service service = device.getServices().get(0);
-        Work work1 = new Work(3, "Limpieza y diagnóstico", employee);
-        Work work2 = new Work(4, "Actualización de componentes",
-                manager.getTechnician(2));
-        service.addWork(work1);
-        service.addWork(work2);
+        Service service = manager.getDevice("XYZ-98765").getServices().get(0);
+        service.addWork(new Work(3, "Limpieza y diagnóstico", manager.getTechnician(1)));
+        service.addWork(new Work(4, "Actualización de componentes", manager.getTechnician(2)));
 
         // Realizar pago
-        Payment payment = new Payment(LocalDate.of(2024, 3, 15), 150);
-        manager.payService(service, payment);
+        manager.payService(service, new Payment(LocalDate.of(2024, 3, 15), 150));
     }
 
     public static void printServiceReport(ServiceManager manager) {
