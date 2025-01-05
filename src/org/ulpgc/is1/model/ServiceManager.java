@@ -80,9 +80,7 @@ public class ServiceManager {
         if (type == null || description == null || device == null || manager == null) {
             throw new IllegalArgumentException("Ningún parámetro puede ser nulo");
         }
-
-        Budget budget = new Budget(date, amount, manager);
-        Service service = new Service(type, description, device, budget);
+        Service service = new Service(type, description, date, amount, device, manager);
         return service;
     }
 

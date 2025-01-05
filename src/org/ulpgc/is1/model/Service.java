@@ -11,11 +11,11 @@ public class Service {
     private String description;
     private Device device;
     private Payment payment;
-    private Budget budget;
+    private Budget budget;  
     private final List<Work> works;
 
-    public Service(ServiceType type, String description, Device device, Budget budget) {
-        if (type == null || description == null || device == null || budget == null) {
+    public Service(ServiceType type, String description, LocalDate date, int amount, Device device, Employee manager) {
+        if (type == null || description == null || device == null || manager == null) {
             throw new IllegalArgumentException("Ningún parámetro puede ser nulo");
         }
         if (description.trim().isEmpty()) {
@@ -26,7 +26,8 @@ public class Service {
         this.type = type;
         this.description = description;
         this.device = device;
-        this.budget = budget;
+        this.payment = null;
+        this.budget = new Budget(date, amount, manager);
         this.works = new ArrayList<>();
         device.addService(this);
     }
