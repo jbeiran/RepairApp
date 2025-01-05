@@ -6,13 +6,18 @@ public class Budget {
     private final LocalDate date;
     private final int amount;
     private final Employee manager;
-    private Service service;
 
-    public Budget(LocalDate date, int amount, Employee manager, Service service) {
+    public Budget(LocalDate date, int amount, Employee manager) {
+        if (date == null || manager == null) {
+            throw new IllegalArgumentException("La fecha y el manager no pueden ser null");
+        }
+        if (amount <= 0) {
+            throw new IllegalArgumentException("El monto debe ser positivo");
+        }
+
         this.date = date;
         this.amount = amount;
         this.manager = manager;
-        this.service = service;
     }
 
     public LocalDate getDate() {
@@ -26,12 +31,4 @@ public class Budget {
     public Employee getManager() {
         return manager;
     }
-
-    public Service getService() {
-        return service;
-    }
-
-    public void setService(Service service) {
-        this.service = service;
-    }
-}
+}   

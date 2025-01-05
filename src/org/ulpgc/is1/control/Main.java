@@ -34,7 +34,8 @@ public class Main {
     public static void createService(ServiceManager manager) {
         // Crear y asignar servicio
         manager.service(ServiceType.Maintenance, "Mantenimiento preventivo del equipo",
-                manager.getDevice("XYZ-98765"), new Budget(LocalDate.of(2024, 3, 15), 150, manager.getTechnician(1), null));
+                manager.getDevice("XYZ-98765"),
+                new Budget(LocalDate.of(2024, 3, 15), 150, manager.getTechnician(1)));
 
         // Obtener servicio y agregar trabajos
         Service service = manager.getDevice("XYZ-98765").getServices().get(0);
