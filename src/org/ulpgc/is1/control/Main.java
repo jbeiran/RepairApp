@@ -5,13 +5,13 @@ import java.time.LocalDate;
 
 public class Main {
     public static void init(ServiceManager manager) {
-        // Crear clientes
+        // Crear clientes (pt. 1)
         Customer customer1 = new Customer("Carlos", "Martínez Ruiz", new Phone("928123456"));
         Customer customer2 = new Customer("Laura", "Sánchez Díaz", new Phone("928789012"));
         manager.addCustomer(customer1);
         manager.addCustomer(customer2);
 
-        // Crear dispositivos
+        // Crear dispositivos (pt. 2)
         Device device1 = new Device("ABC-12345", DeviceType.Smartphone);
         Device device2 = new Device("XYZ-98765", DeviceType.Desktop);
         Device device3 = new Device("DEF-45678", DeviceType.Laptop);
@@ -19,23 +19,23 @@ public class Main {
         manager.addDevice(device2);
         manager.addDevice(device3);
 
-        // Asignar dispositivos a clientes
+        // Asignar dispositivos a clientes (pt. 2)
         customer1.addDevice(device1);
         customer1.addDevice(device2);
         customer2.addDevice(device3);
 
-        // Crear empleados
-        Employee employee1 = new Employee("Miguel", "Torres López");
-        Employee employee2 = new Employee("Ana", "Ramírez Castro");
+        // Crear empleados (pt. 3)
+        Employee employee1 = new Employee("Miguel", "Torres López", 1);
+        Employee employee2 = new Employee("Ana", "Ramírez Castro", 2);
         manager.addTechnician(employee1);
         manager.addTechnician(employee2);
     }
 
     public static void createService(ServiceManager manager) {
-        // Crear y asignar servicio
-        manager.service(ServiceType.Maintenance, "Mantenimiento preventivo del equipo",
+        // Crear y asignar servicio (pt. 4)
+        manager.service(ServiceType.Repair, "Mantenimiento preventivo del equipo",
                 manager.getDevice("XYZ-98765"),
-                new Budget(LocalDate.of(2024, 3, 15), 150, manager.getTechnician(1)));
+                new Budget(LocalDate.of(2024, 3, 15), 150, manager.getTechnician(2)));
 
         // Obtener servicio y agregar trabajos
         Service service = manager.getDevice("XYZ-98765").getServices().get(0);
@@ -43,7 +43,7 @@ public class Main {
         service.addWork(new Work(4, "Actualización de componentes", manager.getTechnician(2)));
 
         // Realizar pago
-        manager.payService(service, new Payment(LocalDate.of(2024, 3, 15), 150));
+        service.pay(150, LocalDate.of(2024, 3, 15));
     }
 
     public static void printServiceReport(ServiceManager manager) {

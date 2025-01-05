@@ -1,5 +1,6 @@
 package org.ulpgc.is1.model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,8 +65,8 @@ public class ServiceManager {
         new Service(type, description, device, budget);
     }
 
-    public void payService(Service service, Payment payment) {
-        service.pay(payment);
+    public void payService(Service service, int amount, LocalDate date) {
+        service.pay(amount, date);
     }
 
     public List<Service> getDeviceServiceList(Device device) {
