@@ -48,7 +48,7 @@ public class Device {
         if (!(obj instanceof Device))
             return false;
         Device device = (Device) obj;
-        return serialNumber.equals(device.serialNumber);
+        return getSerialNumber().equals(device.getSerialNumber());
     }
 
     @Override
