@@ -4,23 +4,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Device {
-    private final String serialNumber;
-    private final DeviceType type;
+    private String serialNumber;
+    private DeviceType type;
     private Customer owner = null;
-    private final List<Service> services;
+    private List<Service> services = new ArrayList<>();
 
     public Device(String serialNumber, DeviceType type) {
         this.serialNumber = serialNumber;
         this.type = type;
-        this.services = new ArrayList<>();
     }
 
     public String getSerialNumber() {
         return serialNumber;
     }
 
+    public void setSerialNumber(String serialNumber) {
+        this.serialNumber = serialNumber;
+    }
+
     public DeviceType getType() {
         return type;
+    }
+
+    public void setType(DeviceType type) {
+        this.type = type;
     }
 
     public Customer getOwner() {
@@ -39,6 +46,10 @@ public class Device {
 
     public List<Service> getServices() {
         return new ArrayList<>(services);
+    }
+
+    public void setServices(List<Service> services) {
+        this.services = services;
     }
 
     @Override

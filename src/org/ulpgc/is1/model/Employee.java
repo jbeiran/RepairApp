@@ -1,15 +1,14 @@
 package org.ulpgc.is1.model;
 
 public class Employee {
-    private static int NEXT_ID = 1;
     private final int number;
-    private final String name;
-    private final String surname;
+    private String name;
+    private String surname;
 
-    public Employee(String name, String surname) {
-        this.number = NEXT_ID++;
+    public Employee(String name, String surname, int number) {
         this.name = name;
         this.surname = surname;
+        this.number = number;
     }
 
     public int getNumber() {

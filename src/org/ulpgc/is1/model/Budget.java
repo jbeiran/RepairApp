@@ -3,9 +3,9 @@ package org.ulpgc.is1.model;
 import java.time.LocalDate;
 
 public class Budget {
-    private final LocalDate date;
-    private final int amount;
-    private final Employee manager;
+    private LocalDate date;
+    private int amount;
+    private Employee manager;
 
     public Budget(LocalDate date, int amount, Employee manager) {
         if (date == null || manager == null) {
@@ -24,11 +24,23 @@ public class Budget {
         return date;
     }
 
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
     public int getAmount() {
         return amount;
     }
 
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
     public Employee getManager() {
         return manager;
+    }
+
+    public void setManager(Employee manager) {
+        this.manager = manager;
     }
 }   
