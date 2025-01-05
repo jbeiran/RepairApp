@@ -3,9 +3,9 @@ package org.ulpgc.is1.model;
 import java.util.Objects;
 
 public class Work {
-    private final int timeSpent;
-    private final String description;
-    private final Employee technician;
+    private int timeSpent;
+    private String description;
+    private Employee technician;
 
     public Work(int timeSpent, String description, Employee technician) {
         this.timeSpent = timeSpent;
@@ -17,12 +17,24 @@ public class Work {
         return timeSpent;
     }
 
+    public void setTimeSpent(int timeSpent) {
+        this.timeSpent = timeSpent;
+    }
+
     public String getDescription() {
         return description;
     }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public Employee getTechnician() {
         return technician;
+    }
+
+    public void setTechnician(Employee technician) {
+        this.technician = technician;
     }
 
     @Override

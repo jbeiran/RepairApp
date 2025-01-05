@@ -15,10 +15,15 @@ public class ServiceManager {
         this.employees = new ArrayList<>();
     }
 
-    public void addCustomer(Customer customer) {
+    public boolean addCustomer(Customer customer) {
+        if (customer == null) {
+            throw new IllegalArgumentException("El cliente no puede ser nulo");
+        }
         if (!customers.contains(customer)) {
             customers.add(customer);
+            return true;
         }
+        return false;
     }
 
     public Customer getCustomer(String phone) {
@@ -30,10 +35,15 @@ public class ServiceManager {
         return null;
     }
 
-    public void addDevice(Device device) {
+    public boolean addDevice(Device device) {
+        if (device == null) {
+            throw new IllegalArgumentException("El dispositivo no puede ser nulo");
+        }
         if (!devices.contains(device)) {
             devices.add(device);
+            return true;
         }
+        return false;
     }
 
     public Device getDevice(String serialNumber) {
@@ -45,10 +55,15 @@ public class ServiceManager {
         return null;
     }
 
-    public void addTechnician(Employee employee) {
+    public boolean addTechnician(Employee employee) {
+        if (employee == null) {
+            throw new IllegalArgumentException("El empleado no puede ser nulo");
+        }
         if (!employees.contains(employee)) {
             employees.add(employee);
+            return true;
         }
+        return false;
     }
 
     public Employee getTechnician(int number) {
@@ -60,16 +75,38 @@ public class ServiceManager {
         return null;
     }
 
-    public void service(ServiceType type, String description, Device device,
-            Budget budget) {
-        new Service(type, description, device, budget);
+    public Service service(ServiceType type, String description, Device device,
+            Employee manager, int amount, LocalDate date) {
+        if (type == null || description == null || device == null || manager == null) {
+            throw new IllegalArgumentException("Ningún parámetro puede ser nulo");
+        }
+
+        Budget budget = new Budget(date, amount, manager);
+        Service service = new Service(type, description, device, budget);
+        return service;
     }
 
-    public void payService(Service service, int amount, LocalDate date) {
-        service.pay(amount, date);
+    public boolean payService(Service service, int amount, LocalDate date) {
+        if (service == null || date == null) {
+            throw new IllegalArgumentException("El servicio y la fecha no pueden ser nulos");
+        }
+        if (amount <= 0) {
+            throw new IllegalArgumentException("El monto debe ser positivo");
+        }
+
+        try {
+            service.pay(amount, date);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
-    public List<Service> getDeviceServiceList(Device device) {
-        return device.getServices();
+    public List<Service> getDeviceServiceList(String serialNumber) {
+        Device device = getDevice(serialNumber);
+        if (device == null) {
+            return new ArrayList<>();
+        }
+        return new ArrayList<>(device.getServices());
     }
 }
