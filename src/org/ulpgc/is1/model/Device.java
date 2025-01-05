@@ -15,10 +15,6 @@ public class Device {
         this.services = new ArrayList<>();
     }
 
-    public void setOwner(Customer owner) {
-        this.owner = owner;
-    }
-
     public String getSerialNumber() {
         return serialNumber;
     }
@@ -29,6 +25,10 @@ public class Device {
 
     public Customer getOwner() {
         return owner;
+    }
+
+    public void setOwner(Customer owner) {
+        this.owner = owner;
     }
 
     public void addService(Service service) {
