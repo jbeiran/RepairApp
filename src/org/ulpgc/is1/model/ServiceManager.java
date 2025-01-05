@@ -21,10 +21,12 @@ public class ServiceManager {
     }
 
     public Customer getCustomer(String phone) {
-        return customers.stream()
-                .filter(c -> c.getPhone().getNumber().equals(phone))
-                .findFirst()
-                .orElse(null);
+        for (Customer customer : customers) {
+            if (customer.getPhone().getNumber().equals(phone)) {
+                return customer;
+            }
+        }
+        return null;
     }
 
     public void addDevice(Device device) {
@@ -34,10 +36,12 @@ public class ServiceManager {
     }
 
     public Device getDevice(String serialNumber) {
-        return devices.stream()
-                .filter(d -> d.getSerialNumber().equals(serialNumber))
-                .findFirst()
-                .orElse(null);
+        for (Device device : devices) {
+            if (device.getSerialNumber().equals(serialNumber)) {
+                return device;
+            }
+        }
+        return null;
     }
 
     public void addTechnician(Employee employee) {
@@ -47,10 +51,12 @@ public class ServiceManager {
     }
 
     public Employee getTechnician(int number) {
-        return employees.stream()
-                .filter(e -> e.getNumber() == number)
-                .findFirst()
-                .orElse(null);
+        for (Employee employee : employees) {
+            if (employee.getNumber() == number) {
+                return employee;
+            }
+        }
+        return null;
     }
 
     public void service(ServiceType type, String description, Device device,

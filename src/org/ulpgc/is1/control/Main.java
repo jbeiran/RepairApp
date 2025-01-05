@@ -34,7 +34,7 @@ public class Main {
     public static void createService(ServiceManager manager) {
         // Crear y asignar servicio
         manager.service(ServiceType.Maintenance, "Mantenimiento preventivo del equipo",
-                manager.getDevice("XYZ-98765"), new Budget(LocalDate.of(2024, 3, 15), 150, manager.getTechnician(1)));
+                manager.getDevice("XYZ-98765"), new Budget(LocalDate.of(2024, 3, 15), 150, manager.getTechnician(1), null));
 
         // Obtener servicio y agregar trabajos
         Service service = manager.getDevice("XYZ-98765").getServices().get(0);
@@ -49,7 +49,6 @@ public class Main {
         Device device = manager.getDevice("XYZ-98765");
         Customer customer = device.getOwner();
 
-        System.out.println("\n═══════════════════════════════════════════════════════");
         System.out.println("║ Cliente: " + customer.getName() + " " + customer.getSurname());
         System.out.println("║ Teléfono: " + customer.getPhone());
         System.out.println("═══════════════════════════════════════════════════════\n");
