@@ -6,7 +6,7 @@ import java.util.List;
 public class Device {
     private final String serialNumber;
     private final DeviceType type;
-    private Customer owner;
+    private Customer owner = null;
     private final List<Service> services;
 
     public Device(String serialNumber, DeviceType type) {
@@ -43,8 +43,10 @@ public class Device {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (!(obj instanceof Device)) return false;
+        if (this == obj)
+            return true;
+        if (!(obj instanceof Device))
+            return false;
         Device device = (Device) obj;
         return serialNumber.equals(device.serialNumber);
     }
