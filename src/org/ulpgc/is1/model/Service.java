@@ -11,7 +11,7 @@ public class Service {
     private String description;
     private Device device;
     private Payment payment;
-    private Budget budget;  
+    private Budget budget;
     private final List<Work> works;
 
     public Service(ServiceType type, String description, LocalDate date, int amount, Device device, Employee manager) {
@@ -38,10 +38,14 @@ public class Service {
         }
     }
 
-    public void addWork(Work work) {
-        if (work == null) {
-            throw new IllegalArgumentException("El trabajo no puede ser nulo");
+    public void addWork(int timeSpent, String description, Employee technician) {
+        if (description == null || technician == null) {
+            throw new IllegalArgumentException("La descripción y el técnico no pueden ser nulos");
         }
+        if (timeSpent <= 0) {
+            throw new IllegalArgumentException("El tiempo debe ser positivo");
+        }
+        Work work = new Work(timeSpent, description, technician);
         works.add(work);
     }
 

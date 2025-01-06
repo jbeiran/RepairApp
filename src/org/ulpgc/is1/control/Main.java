@@ -42,12 +42,13 @@ public class Main {
                 LocalDate.of(2024, 3, 15));
 
         // Obtener servicio y agregar trabajos
-        Service service = manager.getDevice("XYZ-98765").getServices().get(0);
-        service.addWork(new Work(3, "Limpieza y diagnóstico", manager.getTechnician(1)));
-        service.addWork(new Work(4, "Actualización de componentes", manager.getTechnician(2)));
+        manager.getDevice("XYZ-98765").getServices().get(0)
+                .addWork(3, "Limpieza y diagnóstico", manager.getTechnician(1));
+        manager.getDevice("XYZ-98765").getServices().get(0)
+                .addWork(4, "Actualización de componentes", manager.getTechnician(2));
 
         // Realizar pago
-        service.pay(150, LocalDate.of(2024, 3, 15));
+        manager.getDevice("XYZ-98765").getServices().get(0).pay(150, LocalDate.of(2024, 3, 15));
     }
 
     public static void printServiceReport(ServiceManager manager) {
@@ -58,9 +59,7 @@ public class Main {
         System.out.println("║ Teléfono: " + customer.getPhone());
         System.out.println("═══════════════════════════════════════════════════════\n");
 
-        for (Service s : manager.getDeviceServiceList(device.getSerialNumber())) {
-            printServiceDetails(s);
-        }
+        manager.getDeviceServiceList(device.getSerialNumber()).forEach(s -> printServiceDetails(s));
     }
 
     private static void printServiceDetails(Service service) {
@@ -120,14 +119,18 @@ public class Main {
 
     private static void printWorkInfo(Service service) {
         System.out.println("│ TAREAS REALIZADAS");
-        for (Work work : service.getWorks()) {
-            System.out.println("│ * " + work.getDescription());
-            System.out.println("│   Técnico: " + work.getTechnician().getName() +
-                    " " + work.getTechnician().getSurname());
-            System.out.println("│   Tiempo: " + work.getTimeSpent() + " horas");
-            if (service.getWorks().indexOf(work) != service.getWorks().size() - 1) {
-                System.out.println("│");
-            }
+        if (service.getWorks().isEmpty()) {
+            System.out.println("│ No hay tareas registradas");
+            return;
         }
+
+        service.getWorks().forEach(work -> {
+            System.out.println("│ * " + work.getDescription());
+            System.out.printf("│   Técnico: %s %s%n",
+                    work.getTechnician().getName(),
+                    work.getTechnician().getSurname());
+            System.out.printf("│   Tiempo: %d horas%n", work.getTimeSpent());
+            System.out.println("│");
+        });
     }
 }
