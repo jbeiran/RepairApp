@@ -6,8 +6,8 @@ import java.time.LocalDate;
 public class Main {
     public static void init(ServiceManager manager) {
         // Crear clientes (pt. 1)
-        Customer customer1 = new Customer("Carlos", "Martínez Ruiz", new Phone("928123456"));
-        Customer customer2 = new Customer("Laura", "Sánchez Díaz", new Phone("928789012"));
+        Customer customer1 = new Customer("Carlos", "Martínez Ruiz", "928123456");
+        Customer customer2 = new Customer("Laura", "Sánchez Díaz", "928789012");
         manager.addCustomer(customer1);
         manager.addCustomer(customer2);
 

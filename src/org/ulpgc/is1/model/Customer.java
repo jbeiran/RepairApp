@@ -10,10 +10,10 @@ public class Customer {
     private Phone phone;
     private List<Device> devices;
 
-    public Customer(String name, String surname, Phone phone) {
+    public Customer(String name, String surname, String phoneNumber) {
         this.name = name;
         this.surname = surname;
-        this.phone = phone;
+        this.phone = new Phone(phoneNumber);
         this.devices = new ArrayList<>();
     }
 
@@ -37,8 +37,8 @@ public class Customer {
         return phone;
     }
 
-    public void setPhone(Phone phone) {
-        this.phone = phone;
+    public void setPhone(String phoneNumber) {
+        this.phone = new Phone(phoneNumber);
     }
 
     public List<Device> getDevices() {
