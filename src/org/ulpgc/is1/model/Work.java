@@ -38,10 +38,6 @@ public class Work {
         return technicians;
     }
 
-    public void setTechnicians(List<Employee> technicians) {
-        this.technicians = technicians;
-    }
-
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
