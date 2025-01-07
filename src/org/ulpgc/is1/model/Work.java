@@ -38,6 +38,15 @@ public class Work {
         return technicians;
     }
 
+    public void addTechnician(Employee technician) {
+        if (technician == null) {
+            throw new IllegalArgumentException("El técnico no puede ser nulo");
+        }
+        if (!technicians.contains(technician)) {
+            technicians.add(technician);
+        }
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
