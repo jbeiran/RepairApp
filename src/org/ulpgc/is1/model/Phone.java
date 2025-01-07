@@ -10,13 +10,12 @@ public class Phone {
         setNumber(number);
     }
 
-    public int isValid(String number) throws InvalidPhoneException {
-        Pattern pattern = Pattern.compile("^(679)\\d{8}$");
-        Matcher matcher = pattern.matcher(number);
-        if (!matcher.matches())
-            return 0;
-        else
-            throw new InvalidPhoneException(number);
+    public boolean isValid(String number) {
+        if (number == null || number.trim().isEmpty()) {
+            return false;
+        }
+        Matcher matcher = Pattern.compile("^[6-9]\\d{8}$").matcher(number);
+        return matcher.matches();
     }
 
     public String getNumber() {
@@ -24,11 +23,11 @@ public class Phone {
     }
 
     public Phone setNumber(String number) throws InvalidPhoneException {
-        if (isValid(number) == 0) {
-            this.number = number;
-            return this;
-        } else
+        if (!isValid(number)) {
             throw new InvalidPhoneException(number);
+        }
+        this.number = number;
+        return this;
     }
 
     public static class InvalidPhoneException extends RuntimeException {
