@@ -126,9 +126,11 @@ public class Main {
 
         service.getWorks().forEach(work -> {
             System.out.println("│ * " + work.getDescription());
-            System.out.printf("│   Técnico: %s %s%n",
-                    work.getTechnician().getName(),
-                    work.getTechnician().getSurname());
+            work.getTechnicians().forEach(technician -> {
+                System.out.printf("│   Técnico: %s %s%n",
+                        technician.getName(),
+                        technician.getSurname());
+            });
             System.out.printf("│   Tiempo: %d horas%n", work.getTimeSpent());
             System.out.println("│");
         });

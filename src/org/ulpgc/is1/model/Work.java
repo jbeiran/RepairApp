@@ -1,16 +1,21 @@
 package org.ulpgc.is1.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Work {
     private int timeSpent;
     private String description;
-    private Employee technician;
+    private List<Employee> technicians;
 
     public Work(int timeSpent, String description, Employee technician) {
         this.timeSpent = timeSpent;
         this.description = description;
-        this.technician = technician;
+        this.technicians = new ArrayList<>();
+        if (technician != null) {
+            this.technicians.add(technician);
+        }
     }
 
     public int getTimeSpent() {
@@ -29,12 +34,12 @@ public class Work {
         this.description = description;
     }
 
-    public Employee getTechnician() {
-        return technician;
+    public List<Employee> getTechnicians() {
+        return technicians;
     }
 
-    public void setTechnician(Employee technician) {
-        this.technician = technician;
+    public void setTechnicians(List<Employee> technicians) {
+        this.technicians = technicians;
     }
 
     @Override
@@ -46,11 +51,11 @@ public class Work {
         Work work = (Work) obj;
         return timeSpent == work.timeSpent &&
                 description.equals(work.description) &&
-                technician.equals(work.technician);
+                technicians.equals(work.technicians);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(timeSpent, description, technician);
+        return Objects.hash(timeSpent, description, technicians);
     }
 }
